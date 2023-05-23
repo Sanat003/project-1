@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% include 'cdnlines.html' %}
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center display-3 font-weight-bold">NTH-Employee Information</h1>
+          <div class="text-right">
+            <a href="{% url 'add' %}" class="btn btn-success">Add Employee</a>
+
+          </div>
+          {% if emps %}
+          <h1 class="text-center font-weight-bold display-5">Employee Data</h1>
+          <table class="table table-bordered text-center">
+            <thead class="bg-success text-dark mt-5">
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email ID</th>
+                <th>Mobile</th>
+                <th>Company</th>
+                <th>Salary</th>
+                <th>Location</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="bg-dark text-white">
+              {% for emp in emps %}
+              <tr>
+                <td>{{emp.first_name}}</td>
+                <td>{{emp.last_name}}</td>
+                <td>{{emp.email}}</td>
+                <td>{{emp.mobile}}</td>
+                <td>{{emp.company}}</td>
+                <td>{{emp.salary}}</td>
+                <td>{{emp.location}}</td>
+                <td>
+                  <a href="{% url 'update' emp.id %}" class="btn btn-info">Update</a>
+                  <a href="{% url 'delete' emp.id %}" class="btn btn-danger">Delete</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+
+
+          {% else %}
+          <h4 class="text-center font-weight-bold display-3">No Employee Data Available</h4>
+
+
+          {% endif %}
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
